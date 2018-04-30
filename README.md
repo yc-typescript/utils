@@ -30,5 +30,55 @@ const res = await fetch('GET', 'http://localhost');
 ```
 
 ### isPromise
+```ts
+import { isPromise } from '@yct/utils';
 
+test('Should be true', () => {
+  expect(isPromise(Promise.resolve(0))).toBe(true);
+});
+
+test('Should be false', () => {
+  expect(isPromise({})).toBe(false);
+  expect(isPromise(1)).toBe(false);
+  expect(isPromise('hello')).toBe(false);
+  expect(isPromise(true)).toBe(false);
+});
+```
 ### resolveObject
+```ts
+import { resolveObject } from '@yct/utils';
+
+test('Should resolve all', async () => {
+  try {
+    const obj = {
+      a: Promise.resolve('a'),
+      b: {
+        b1: Promise.resolve('b1'),
+        b2: 'b2',
+        b3: null,
+      },
+      c: [
+        {
+          c1: Promise.resolve('c1'),
+        },
+      ],
+    };
+    await resolveObject(obj);
+    expect(obj).toMatchObject({
+      a: 'a',
+      b: {
+        b1: 'b1',
+        b2: 'b2',
+        b3: null,
+      },
+      c: [
+        {
+          c1: 'c1',
+        },
+      ],
+    });
+  } catch(e) {
+    console.error(e);
+  }
+});
+```

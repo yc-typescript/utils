@@ -29,7 +29,7 @@ test('Should resolve all', async () => {
         },
       ],
     });
-  } catch(e) {
+  } catch (e) {
     console.error(e);
   }
-})
+});
