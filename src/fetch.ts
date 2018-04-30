@@ -4,7 +4,6 @@ export function fetch(
   params: any = {},
   headers: any = {},
   json: boolean = false,
-  responseType: string = ''
 ): Promise<any> {
   if (
     !~['GET', 'POST', 'PUT', 'PATCH', 'DELETE'].indexOf(method.toUpperCase())

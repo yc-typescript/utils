@@ -20,7 +20,6 @@ function fetch(
   params: any = {},
   headers: any = {},
   json: boolean = false,
-  responseType: string = ''
 ): Promise<any>
 ```
 > Usage
@@ -29,3 +28,7 @@ import { fetch } from "@yct/utils";
 
 const res = await fetch('GET', 'http://localhost');
 ```
+
+### isPromise
+
+### resolveObject
