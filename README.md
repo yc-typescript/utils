@@ -82,3 +82,19 @@ test('Should resolve all', async () => {
   }
 });
 ```
+
+### loadScript
+```ts
+import { loadScript } from '@yct/utils';
+
+declare const window: any;
+
+test('Should load jssdk', async () => {
+  try {
+    await loadScript('http://res.wx.qq.com/open/js/jweixin-1.2.0.js');
+    expect(window.wx).toBeTruthy();
+  } catch (e) {
+    console.error(e);
+  }
+});
+```
