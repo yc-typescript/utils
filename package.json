@@ -24,10 +24,10 @@
     "prepublish": "npm run build",
     "prebuild": "npm run clean && npm run format && npm run lint && echo Using TypeScript && tsc --version",
     "build": "tsc --pretty",
-    "test": "jest",
-    "coverage": "jest --coverage",
+    "test": "jest --env=jsdom",
+    "coverage": "jest --coverage --env=jsdom",
     "watch": "npm run build -- --watch",
-    "watch:test": "jest --watch"
+    "watch:test": "jest --watch --env=jsdom"
   },
   "dependencies": {},
   "devDependencies": {
