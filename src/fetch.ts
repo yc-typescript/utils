@@ -39,11 +39,13 @@ export function fetch(
             resolve({
               statusCode: xhr.status,
               data: response,
+              headers: parseHeaders(xhr),
             });
           } catch (e) {
             resolve({
               statusCode: xhr.status,
               data: xhr.response,
+              headers: parseHeaders(xhr),
             });
           }
         } else {
@@ -52,11 +54,13 @@ export function fetch(
             reject({
               statusCode: xhr.status,
               data: response,
+              headers: parseHeaders(xhr),
             });
           } catch (e) {
             reject({
               statusCode: xhr.status,
               data: xhr.response,
+              headers: parseHeaders(xhr),
             });
           }
         }
@@ -75,3 +79,24 @@ export function fetch(
     xhr.send(formData);
   });
 }
+
+function parseHeaders(xhr: XMLHttpRequest) {
+  // Get the raw header string
+  const headersStr = xhr.getAllResponseHeaders();
+
+  // Convert the header string into an array
+  // of individual headers
+  const lines = headersStr.trim().split(/[\r\n]+/);
+
+  // Create a map of header names to values
+  const headers: { [x: string]: string } = {};
+  for (const line of lines) {
+    const parts = line.split(': ');
+    const key = parts.shift().toLowerCase();
+    const value = parts.join(': ');
+    headers[key] = value;
+  }
+  return headers;
+}
+
+
