@@ -98,5 +98,3 @@ function parseHeaders(xhr: XMLHttpRequest) {
   }
   return headers;
 }
-
-
